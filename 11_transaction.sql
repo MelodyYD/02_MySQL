@@ -11,3 +11,18 @@ set autocommit = 1;
 
 -- 비활성화
 set autocommit = 0;
+set autocommit = OFF;
+
+-- start transaction 구문을 작성하면 이제 하나의 과정으로 인식하고 commit, rollback 과정을 수행할 수 있다.
+
+start transaction;
+select * from tbl_menu;
+
+-- dml 수정, 삭제, 삽입 진행
+insert into tbl_menu values (null, '해장국', 9000, 2, 'Y');
+update tbl_menu set menu_name = '해장끝' where menu_code = 29;
+
+-- 작성한 dml 구문이 에러나 이상한 값이 없다면 직접 commit을 해주어야 반영이 된다.
+commit;
+
+rollback;
