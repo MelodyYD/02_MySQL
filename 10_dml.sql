@@ -57,7 +57,14 @@ update tbl_menu
  -- where menu_code를 통해 파인애플탕 추론하기
 update tbl_menu
 set category_code = 6
-where menu_code = (select cte.menu_code from (select menu_code from tbl_menu where menu_name = '파인애플탕') cte);
+where menu_code = (
+					select cte.menu_code 
+                      from (
+							select menu_code 
+                              from tbl_menu 
+							 where menu_name = '파인애플탕'
+							) cte
+				  );
 
 
 -- delete
