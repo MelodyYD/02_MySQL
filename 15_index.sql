@@ -20,7 +20,7 @@ values
 select * from phone;
 
 -- explain (설명)
--- 우리가 작성한 쿼리문의 실행 계힉을 출력해준다.+
+-- 우리가 작성한 쿼리문의 실행 계힉을 출력해준다.
 explain select * from phone where phone_name = '갤럭시s24울트라';
 
 -- 인덱스가 없는 컬럼을 where 절의 조건으로 실생한 결과
