@@ -308,13 +308,29 @@ SELECT a.CLASS_NAME
 --     (단, 평점은 소수점 1 자리까지만 반올림하여 표시한다.)
   SELECT a.STUDENT_NO AS '학번'
 	   , a.STUDENT_NAME AS '학생 이름'
-       , ROUND(AVG(c.POINT), 1) AS '평점'
+       , ROUND(AVG(c.POINT), 1) AS '전체 평점'
     FROM TB_STUDENT a
     JOIN TB_DEPARTMENT b ON a.DEPARTMENT_NO = b.DEPARTMENT_NO
     JOIN TB_GRADE c ON a.STUDENT_NO = c.STUDENT_NO
    WHERE b.DEPARTMENT_NAME LIKE '음악학과'
 GROUP BY 학번
-ORDER BY 평점 DESC; 
+ORDER BY ROUND(AVG(c.POINT), 1) DESC;
+
+
+-- 11. 학번이 `A313047` 인 학생이 학교에 나오고 있지 않다. 지도 교수에게 내용을 전달하기 위한 학과 이름, 학생 이름과 지도 교수 이름이 필요하다. 이때 사용할 SQL 문을 작성하시오. 
+--     단, 출력헤더는 ‚’학과이름‛, ‚학생이름‛, ‚지도교수이름‛으로 출력되도록 한다.
+SELECT b.DEPARTMENT_NAME AS '학과이름'
+	 , a.STUDENT_NAME AS '학생이름'
+     , c.PROFESSOR_NAME AS '지도교수이름'
+  FROM TB_STUDENT a
+  JOIN TB_DEPARTMENT b ON a.DEPARTMENT_NO = b.DEPARTMENT_NO
+  JOIN TB_PROFESSOR c ON a.COACH_PROFESSOR_NO = c.PROFESSOR_NO
+ WHERE a.STUDENT_NO LIKE 'A313047';
+ 
+ 
+-- 12. 2022년도에 인간관계론 과목을 수강한 학생을 찾아 학생이름과 수강학기를 표시하는 SQL 문장을 작성하시오.
+
+select * from TB_CLASS WHERE CLASS_NAME LIKE '%인간관계론%';
 
 
 
