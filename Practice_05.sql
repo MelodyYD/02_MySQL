@@ -329,10 +329,21 @@ SELECT b.DEPARTMENT_NAME AS '학과이름'
  
  
 -- 12. 2022년도에 인간관계론 과목을 수강한 학생을 찾아 학생이름과 수강학기를 표시하는 SQL 문장을 작성하시오.
+SELECT a.STUDENT_NAME
+	 , b.TERM_NO
+  FROM TB_STUDENT a
+  JOIN TB_GRADE b ON a.STUDENT_NO = b.STUDENT_NO
+  JOIN TB_CLASS c ON b.CLASS_NO = c.CLASS_NO
+ WHERE c.CLASS_NAME LIKE '%인간관계론%'
+	   AND
+       b.TERM_NO LIKE '2022%';
 
-select * from TB_CLASS WHERE CLASS_NAME LIKE '%인간관계론%';
+
+-- 13. 예체능 계열 과목 중 과목 담당교수를 한명도 배정받지 못한 과목을 찾아 그 과목 이름과 학과 이름을 출력하는 SQL 문장을 작성하시오.
+-- 학과 테이블의 CATEGORY = 예체능 : 미술학과 무용학과 공연예술학과 음악학과 도예학과 산업디자인학과 디자인학과 체육학과
 
 
+SELECT * FROM TB_CLASS_PROFESSOR WHERE CLASS_NO LIKE 'C0027000';
 
 select * from TB_DEPARTMENT; --  학과테이블
 select * from TB_STUDENT; -- 학생테이블
